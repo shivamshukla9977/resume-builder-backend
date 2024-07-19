@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(:educations, :skills, :links, :projects, :overviews, :jobs).find(params[:id])
 
-   render json: [@user]
+   render json: @user
   end
 
   def new
