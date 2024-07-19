@@ -3,10 +3,12 @@ class EducationsController < ApplicationController
 
   def index
     @educations = @user.educations
+    render json: @educations
   end
 
   def show
     @education = @user.educations.find(params[:id])
+    render json: @education
   end
 
   def new

@@ -3,10 +3,12 @@ class LinksController < ApplicationController
 
   def index
     @links = @user.links
+    render json: @links
   end
 
   def show
     @link = @user.links.find(params[:id])
+    render json: @link
   end
 
   def new

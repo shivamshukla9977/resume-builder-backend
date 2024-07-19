@@ -3,10 +3,12 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = @user.projects
+    render json: @projects
   end
 
   def show
     @project = @user.projects.find(params[:id])
+    render json: @project
   end
 
   def new

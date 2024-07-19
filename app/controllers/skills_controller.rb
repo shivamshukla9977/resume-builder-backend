@@ -3,10 +3,12 @@ class SkillsController < ApplicationController
 
   def index
     @skills = @user.skills
+    render json: @skills
   end
 
   def show
     @skill = @user.skills.find(params[:id])
+    render json: @skill
   end
 
   def new

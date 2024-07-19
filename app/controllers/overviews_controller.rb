@@ -3,10 +3,12 @@ class OverviewsController < ApplicationController
 
   def index
     @overviews = @user.overviews
+    render json: @overviews
   end
 
   def show
     @overview = @user.overviews.find(params[:id])
+    render json: @overview
   end
 
   def new

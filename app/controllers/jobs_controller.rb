@@ -3,10 +3,12 @@ class JobsController < ApplicationController
 
   def index
     @jobs = @user.jobs
+    render json: @jobs
   end
 
   def show
     @job = @user.jobs.find(params[:id])
+    render json: job
   end
 
   def new
