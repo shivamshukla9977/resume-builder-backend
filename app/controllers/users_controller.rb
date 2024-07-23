@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if params[:search]
+      search_query = "%#{params[:search]}%"
+      @users = User.where(
+        "first_name LIKE :search OR last_name LIKE :search OR email LIKE :search OR city LIKE :search OR state LIKE :search OR country LIKE :search",
+        search: search_query
+      ).includes(:educations, :skills, :links, :projects, :overviews, :jobs)
+    else
+      @users = User.all.includes(:educations, :skills, :links, :projects, :overviews, :jobs)
+    end
     render json: @users
   end
 
@@ -45,6 +53,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :city, :state, :country)
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :city, :state, :country, :search)
   end
 end
